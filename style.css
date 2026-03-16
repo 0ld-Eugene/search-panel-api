@@ -74,6 +74,15 @@ picture {
    display: block;
 }
 
+/* Убираем стандартный белый фон при автозаполнении */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+   -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+   -webkit-text-fill-color: #ffffff !important;
+   transition: background-color 5000s ease-in-out 0s;
+}
+
 /* ------------------ */
 
 .search-panel {
@@ -205,7 +214,8 @@ picture {
 }
 
 .search-panel__tag-btn.is-active {
-   background-color: #8e24aa;
+   /* background-color: #8e24aa; */
+   background: linear-gradient(-45deg, #4a148c, #8e24aa);
    /* Твой фирменный фиолетовый */
    border-color: #b346c1;
    color: #fff;
@@ -287,6 +297,7 @@ picture {
    .search-panel {
       top: 20px;
    }
+
    .gallery-card__name {
       font-size: 14px;
    }
