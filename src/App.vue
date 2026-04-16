@@ -1,6 +1,7 @@
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, nextTick } from 'vue';
   import axios from 'axios';
+  import { gsap } from 'gsap';
 
   const tags = ref (['Landscape', 'Flowers', 'Musical']);
   const searchQuery = ref('');
@@ -26,7 +27,17 @@ const search = async (query) => {
     });
 
     photos.value = response.data.results;
-    console.log("Успех! В массиве photos теперь столько элементов:", photos.value.length);
+
+    await nextTick();
+
+    gsap.from('.gallery-card', {
+      duration: 0.4,
+      opacity: 0,
+      y: -50,
+      stagger: 0.05,
+      ease: 'power1.out'
+    })
+
   } catch(error) {
     console.log("Произошла ошибка при запросе:", error);
   } finally {
