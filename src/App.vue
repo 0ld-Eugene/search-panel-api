@@ -15,13 +15,17 @@ const search = async (query) => {
   activeTag.value = query;
 
   const apiKey = import.meta.env.VITE_ACCESS_KEY;
-  const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=20&client_id=${apiKey}`;
 
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await axios.get('https://api.unsplash.com/search/photos', {
+      params: {
+        query: query,
+        per_page: 20,
+        client_id: apiKey
+      }
+    });
 
-    photos.value = data.results;
+    photos.value = response.data.results;
     console.log("Успех! В массиве photos теперь столько элементов:", photos.value.length);
   } catch(error) {
     console.log("Произошла ошибка при запросе:", error);
