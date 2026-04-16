@@ -4,6 +4,7 @@ window.onload = () => {
    if (savedSearch) {
       searchInput.value = savedSearch; // Подставляем в инпут
       getPhotos(savedSearch); // Сразу загружаем фото
+      //
    }
 };
 
